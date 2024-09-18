@@ -1,16 +1,19 @@
-name: C/C++ CI
+name: Build C++
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
-  build:
-
+  install:
     runs-on: ubuntu-latest
-
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y -f build-essential g++ cmake
   build:
     needs: install
     runs-on: ubuntu-latest
